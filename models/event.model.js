@@ -24,8 +24,7 @@ const eventmanSchema = new Schema(
     craftsmanName:[{
         type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
     }],
-    
-
+ 
   },
   {
         timestamps: true,
