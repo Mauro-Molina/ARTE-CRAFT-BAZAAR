@@ -1,13 +1,45 @@
-<form action="/auth/signup" method="POST">
-   <label> Username
-      <input type="text" name="username">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
+<div class="modal-dialog ">
+    <div class="col-sm-10 main-section shadown">
+      <div class="modal-content">
+        <div class="col-12 user-img text-center">
+          <img src="/images/user.png" alt="">
+        </div>
+        <form action="/auth/signup" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">User Name</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="User">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Email</label>
+            <input type="email" class="form-control" id="inputPassword4" placeholder="gmail@gmail.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress">Password</label>
+            <input type="password" class="form-control" id="inputAddress" placeholder="*********">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">What do you want to be?</label>
+            <select id="inputState" class="form-control">
+              <option selected>user</option>
+              <option>craftsman</option>
+            </select>
+          </div>
+        </div>
 
-   <button type="submit">Submit</button>
-</form>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+          
+          </div>
+        </div>
+         <span>You have an acount <a href="/auth/login">Log In</a></span> <br><br>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Sing Up</button>
+      </form>
+    </div>
+  </div>
+    </div>
 
 {{#if errorMessage}}
    {{errorMessage}}
