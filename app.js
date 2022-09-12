@@ -30,7 +30,16 @@ app.use("/", index);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
+//User routing system
+const userRoutes = require("./routes/users.routes");
+app.use("/user", userRoutes);
+
+//craftsmen routing system
+const craftsmenRoutes = require("./routes/craftsmen.routes");
+app.use("/craftsman", craftsmenRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
 
 module.exports = app;
