@@ -9,27 +9,20 @@ const postSchema = new Schema(
       trim: true,
     },
     date:{
-        type: date.now,
-
+        type: Date,
+        
     },
     description:{
       type: String,
       required: true,
       trim: true,
     },
-   
-    postNumber:{
-      type: Number,
-
-    },
-    photos: {
-      type: Image,
-    },
+      
     craftsmanName:[{
         type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
     }],
-    coments:[{
-        type: mongoose.Schema.Types.ObjectId, ref:"Coments",
+    comments:[{
+        type: mongoose.Schema.Types.ObjectId, ref:"Comments",
     }],
   },
   

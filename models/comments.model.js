@@ -1,28 +1,25 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 
 const comentsSchema = new Schema(
   {
-    username: {
+    message: {
       type: String,
-      required: true,
-      trim: true,
+      
     },
 
     date:{
-        type: date.now,
-
+        type: Date,
+   
     },
           
     craftsmanName:[{
         type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
     }],
-    coments:{
-        type: String,
-        trim: true,
-        required: true,
 
-    },
+    userName: [{
+      type: mongoose.Schema.Types.ObjectId, ref:"UserName",
+    }]
   },
   
   {

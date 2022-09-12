@@ -25,40 +25,26 @@ const craftsmanSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["username", "handicrafts",],
-      default: "handicfrats",
+      enum: ["user", "craftsman"],
+      default: "craftsman",
     },
-    event: {
-      type: String,
-      required: true,
-      trim: true,
-      minLength: 15,
-      created:{
-        type: Date,
-        default: Date.now,
-        
-      }, 
-    },
+    
+      event:[{
+        type: mongoose.Schema.Types.ObjectId, ref:"Event",
+    }],
+      
+    
     profilePic: {
       type: String,
       default:
           "https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600380/59162629-icono-de-perfil-blanco-en-el-bot%C3%B3n-negro-aislado-en-blanco.jpg?ver=6",
     },
-    description:{
-      type: String,
-      minLength: 20,
-      required: true,
-      trim: true
-    },
-    post:{
-      type: String,
-      trim: true,
-      minLength: 6,
-      
-    },
-    photos: {
-      type: Image,
-    },
+    
+    post:[{
+      type: mongoose.Schema.Types.ObjectId, ref:"Post",
+  }],
+   
+   
     socialMedia:{
       facebookProfile:{
         type:String,

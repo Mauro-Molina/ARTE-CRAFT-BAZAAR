@@ -13,32 +13,18 @@ const eventmanSchema = new Schema(
       required: true,
       trim: true
     },
-    date:{
-        type: date.now,
+    date: {
+      type: Date,
     },
-    hour: {
-        type: hour.now,
-    },
-    place:{
-        type: String,
-    },
-    post:{
-      type: String,
-      trim: true,
-      minLength: 6,
-
-    },
-    photos: {
-      type: Image,
-    },
+      
+    comments:[{
+      type: mongoose.Schema.Types.ObjectId, ref:"Comments",
+  }],
+ 
     craftsmanName:[{
         type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
     }],
-    coments:{
-        type: String,
-        trim: true,
-        required: true,
-    },
+    
 
   },
   {
