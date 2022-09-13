@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Post = require("../models/Post.model");
+const Post = require("../models/Posts.model");
 
 router.get("/event", (req, res) => {
     //if(req.session.post.type === "event"){

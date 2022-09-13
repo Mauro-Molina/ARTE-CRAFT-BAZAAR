@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-
+//Model Post
 
 const postSchema = new Schema(
   {
@@ -10,34 +10,31 @@ const postSchema = new Schema(
     },
     date:{
         type: Date,
-        
-    },
+     },
     extract:{
       type: String,
       required: true,
       trim: true,
       maxLength: 100,
     },
-
     image: {
       type: String,
     },
-      
-    description:{
+     description:{
       type: String,
       required: true,
       trim: true,
     },
-      
-    craftsmanName:[{
-       // type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
-    }],
+    type:{
+      type: String,
+      enum: ["post","event"]
+    },
     comments:[{
-       // type: mongoose.Schema.Types.ObjectId, ref:"Comments",
+       type: Schema.Types.ObjectId, ref:"Comments",
     }],
   },
   {
-        timestamps: true,
+    timestamps: true,
   }
 );
 
