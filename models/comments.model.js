@@ -1,32 +1,23 @@
-const { Schema, model, default: mongoose } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 
-const comentsSchema = new Schema(
-  {
+const commentsSchema = new Schema({
     message: {
       type: String,
-      
-    },
-
+       },
     date:{
-        type: Date,
-   
+      type: Date,
+       },
+    user: {
+      type: Schema.Types.ObjectId, ref:"User",
     },
-          
-    craftsmanName:[{
-        type: Schema.Types.ObjectId, ref:"Craftsman",
-    }],
-
-    userName: [{
-      type: Schema.Types.ObjectId, ref:"UserName",
-    }]
+    
   },
-  
-  {
-        timestamps: true,
+  { 
+    timestamps: true,
   }
 );
 
-const Coments = model("Coments", comentsSchema);
+const Comments = model("Comments", commentsSchema);
 
-module.exports = Coments;
+module.exports = Comemnts;
