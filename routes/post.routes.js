@@ -34,7 +34,7 @@ router.get("/:postId", (req, res) => {
 
 
 //edit post
-/*
+
 router.get("/:id/edit", (req, res)=>{
   Post.findById(req.params.id)
   .then((post)=>{
@@ -42,14 +42,14 @@ router.get("/:id/edit", (req, res)=>{
   })
 })
 
-//recibir los datos y actualizarlos
+
 router.post("/:id/edit", (req,res)=>{
   Post.findByIdAndUpdate(req.params.id, req.body,{new: true})
-  .then((libroActualizado)=>{
-      res.redirect(`/libros/${req.params.id}`)
+  .then((postUpdate)=>{
+      res.redirect(`/post/${req.params.id}`)
   })
   .catch((err) => console.log(err))
-})*/
+})
 
 
 //delete post

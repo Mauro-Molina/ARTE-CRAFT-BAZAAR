@@ -33,6 +33,9 @@ app.use("/auth", authRoutes);
 const postRoutes = require("./routes/post.routes");
 app.use("/post", postRoutes);
 
+const eventRoutes = require("./routes/event.routes");
+app.use("/event", eventRoutes);
+
 //User routing system
 const userRoutes = require("./routes/users.routes");
 app.use("/user", userRoutes);

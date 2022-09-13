@@ -1,11 +1,15 @@
 <h2>Edit Post</h2>
 <form action="/post/{{_id}}/edit" method="post">
   <label> Title:
-    <input type="text" name="title" value="{{name}}"/>
+    <input type="text" name="name" value="{{name}}"/>
   </label>
  
   <label> Description:
-    <textarea name="" id="" cols="30" rows="10">{{description}}</textarea>
+    <textarea name="description" id="" cols="30" rows="10">{{description}}</textarea>
+  </label>
+
+   <label> Extract:
+    <textarea name="extract" id="" cols="30" rows="10">{{extract}}</textarea>
   </label>
 
   <label for="">Edit image
