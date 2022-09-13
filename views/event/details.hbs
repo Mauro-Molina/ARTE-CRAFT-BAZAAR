@@ -1,0 +1,14 @@
+<h1>{{name}}</h1>
+<p>Autor: {{craftsmanName}}</p>
+<p>Resumen: {{description}}</p>
+
+
+<a href="/event">List</a>
+
+
+<a href="/event/{{_id}}/editar">Edit</a>
+
+
+<form action="/event/{{_id}}/eliminar" method="post">
+    <button>Delete</button>
+</form>

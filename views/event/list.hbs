@@ -1,0 +1,17 @@
+<h2>Edit a Event</h2>
+ 
+<form action="/event/{{_id}}/edit" method="post">
+  <label> Title:
+    <input type="text" name="name" value="{{name}}"/>
+  </label>
+ 
+  <label> Author:
+    <input type="text" name="craftsmanName" value="{{craftsmanName}}" />
+  </label>
+ 
+  <label> Description:
+    <textarea name="description" cols="30" rows="4" > {{description}}</textarea>
+  </label>
+  
+  <button type="submit"> Edit </button>
+</form>

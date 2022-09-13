@@ -14,11 +14,11 @@ const comentsSchema = new Schema(
     },
           
     craftsmanName:[{
-        type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
+        type: Schema.Types.ObjectId, ref:"Craftsman",
     }],
 
     userName: [{
-      type: mongoose.Schema.Types.ObjectId, ref:"UserName",
+      type: Schema.Types.ObjectId, ref:"UserName",
     }]
   },
   

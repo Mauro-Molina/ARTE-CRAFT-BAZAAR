@@ -30,7 +30,7 @@ const craftsmanSchema = new Schema(
     },
     
       event:[{
-        type: mongoose.Schema.Types.ObjectId, ref:"Event",
+        type: Schema.Types.ObjectId, ref:"Event",
     }],
       
     
@@ -41,7 +41,7 @@ const craftsmanSchema = new Schema(
     },
     
     post:[{
-      type: mongoose.Schema.Types.ObjectId, ref:"Post",
+      type: Schema.Types.ObjectId, ref:"Post",
   }],
    
    

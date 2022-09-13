@@ -12,6 +12,17 @@ const postSchema = new Schema(
         type: Date,
         
     },
+    extract:{
+      type: String,
+      required: true,
+      trim: true,
+      maxLength: 100,
+    },
+
+    image: {
+      type: String,
+    },
+      
     description:{
       type: String,
       required: true,
@@ -19,10 +30,10 @@ const postSchema = new Schema(
     },
       
     craftsmanName:[{
-        type: mongoose.Schema.Types.ObjectId, ref:"Craftsman",
+       type: Schema.Types.ObjectId, ref:"Craftsman",
     }],
     comments:[{
-        type: mongoose.Schema.Types.ObjectId, ref:"Comments",
+       type: Schema.Types.ObjectId, ref:"Comments",
     }],
   },
   
