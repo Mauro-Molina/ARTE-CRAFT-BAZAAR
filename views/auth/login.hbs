@@ -7,19 +7,24 @@
     <form class="" action="/auth/login" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" id="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="text" id="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username">
           
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
           <label class="form-check-label" for="exampleCheck1"><a href="">Terms of the page</a></label>
         </div>
         <span>You don´t have an acount <a href="/auth/signup">Sign Up</a></span> <br><br>
-        <button type="submit" class="btn btn-primary mb-5"><i class="fas fa-sign-in-alt"></i> Submit</button>
+         {{#if errorMessage}}
+            <div class="error bg-danger ">
+              {{errorMessage}}
+            </div>
+        {{/if}}
+        <button type="submit" class="btn btn-primary mb-5 mt-2"><i class="fas fa-sign-in-alt"></i> Submit</button>
          
       </form>
     </div>

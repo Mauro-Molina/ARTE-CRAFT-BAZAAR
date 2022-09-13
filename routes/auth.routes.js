@@ -18,8 +18,19 @@ router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
+router.get("/user-profile",isLoggedIn,(req,res)=>{
+  if(req.session.user.role ==="craftsman"){
+    res.render("auth/user-profile", {userInSession: req.session.user})
+  }else{
+    res.redirect("/")
+  }
+
+
+})
+
+
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+  const { username,email, password, role } = req.body;
 
   if (!username) {
     return res.status(400).render("auth/signup", {
@@ -62,7 +73,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
         // Create a user and save it in the database
         return User.create({
           username,
+          email,
           password: hashedPassword,
+          role,
         });
       })
       .then((user) => {

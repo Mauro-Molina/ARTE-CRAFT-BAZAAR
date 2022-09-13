@@ -1,0 +1,15 @@
+<h2>Aqui van los detalles del libro</h2>
+
+
+<h1>{{name}}</h1>
+<p>Author: {{craftsmanName}}</p>
+<p class="text-muted">{{date}}</p>
+<p>{{description}}</p>
+
+
+<a href="/post" class="btn btn-primary">View Post</a>
+<a href="/post/{{_id}}/edit" class="btn btn-sucess">Edit</a>
+<br>
+<form action="/post/{{_id}}/delete" method="post">
+<button class="btn btn-danger">Delete</button>
+</form>

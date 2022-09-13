@@ -8,21 +8,21 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">User Name</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="User">
+            <input type="text" class="form-control" id="inputEmail4" placeholder="User" name="username">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Email</label>
-            <input type="email" class="form-control" id="inputPassword4" placeholder="gmail@gmail.com" required>
+            <input type="email" class="form-control" id="inputPassword4" placeholder="gmail@gmail.com" name="email" required >
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputAddress">Password</label>
-            <input type="password" class="form-control" id="inputAddress" placeholder="*********">
+            <input type="password" class="form-control" id="inputAddress" placeholder="*********" name="password">
           </div>
           <div class="form-group col-md-6">
             <label for="inputState">What do you want to be?</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" name="role">
               <option selected>user</option>
               <option>craftsman</option>
             </select>
@@ -35,12 +35,14 @@
           </div>
         </div>
          <span>You have an acount <a href="/auth/login">Log In</a></span> <br><br>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Sing Up</button>
+         {{#if errorMessage}}
+            <div class="error bg-danger ">
+              {{errorMessage}}
+            </div>
+        {{/if}}<input type="submit" id="button" value="Send Email" >
+        <button type="submit" class="btn btn-primary mt-2"><i class="fas fa-sign-in-alt"></i> Sing Up</button>
       </form>
     </div>
   </div>
     </div>
 
-{{#if errorMessage}}
-   {{errorMessage}}
-{{/if}}
