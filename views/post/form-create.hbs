@@ -1,26 +1,51 @@
-<h2>este es el form </h2>
-
-<form action="/post/create" method="post">
-  <label> Name:
+<div class="container ">
+  <div class="row">
+    <div class="col-md-10">
+      <h2 class="title" style="margin-top: -80px;">Create Post</h2>
+    </div>
+    <div class="col-md-2">
+       <a href="/auth/user-profile" class="btn btn-danger" style="margin-top: -100px">Back</a>
+    </div>
+  </div>
+  
+ 
+</div>
+<div class="container mb-5" style="margin-top: -10px;border: 1px solid rgba(0,0,0,0.2); text-transform:uppercase; border-radius: 10px; padding: 20px">
+<form action="/post/create" method="post" class="">
+  <div class="mb-3">
+    <label> Name:
     <input type="text" name="name" />
   </label>
- 
-  <label> Author:
-    <input type="text" name="craftsmanName" />
-  </label>
- 
-  <label> Description:
-    <textarea name="description" cols="30" rows="4"> </textarea>
+
+   <label class="ml-5"> Author:
+    <input type="text" name="author" />
   </label>
 
-   <label> Extract:
-    <textarea name="extract" cols="30" rows="4"> </textarea>
+  <label class="ml-5"> Date:
+    <input type="text" name="date" />
   </label>
+  </div>
+  <div class="mb-3">
+    <div class="form-floating">
+      <label for="floatingTextarea">Descriptions</label>
+      <textarea name="description" cols="30" rows="4" class="form-control"> </textarea>
+    </div>
 
-   <select id="inputState" class="form-control" name="type">
+      <div class="form-floating">
+      <label for="floatingTextarea">extract</label>
+       <textarea name="extract" cols="30" rows="4" class="form-control"> </textarea>
+     </div>
+  </div>
+
+   <select id="inputState" class="form-control mb-3" name="type">
       <option selected>post</option>
       <option>event</option>
     </select>
+
+    <label for="formFile" class="form-label">Cover Image</label>
+  <input class="form-control" type="file" id="formFile">
  
-  <button type="submit" class="btn btn-primary"> Create </button>
+  <button type="submit" class="btn btn-primary mt-3"> Create </button>
+
 </form>
+

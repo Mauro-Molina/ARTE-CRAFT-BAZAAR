@@ -1,22 +1,38 @@
-<h2>Edit Post</h2>
+<div class="container ">
+  <div class="row">
+    <div class="col-md-10">
+      <h2 class="title" style="margin-top: -80px;">Edit Post</h2>
+    </div>
+    <div class="col-md-2">
+       <a href="/auth/user-profile" class="btn btn-danger" style="margin-top: -100px">Back Profile</a>
+    </div>
+  </div>
+  
+ 
+</div>
+<div class="container mb-5" style="margin-top: -10px;border: 1px solid rgba(0,0,0,0.2); text-transform:uppercase; border-radius: 10px; padding: 20px">
 <form action="/post/{{_id}}/edit" method="post">
-  <label> Title:
-    <input type="text" name="name" value="{{name}}"/>
+  <div class="mb-3">
+    <label> Name:
+     <input type="text" name="name" value="{{name}}"/>
   </label>
+
+  </div>
+  <div class="mb-3">
+    <div class="form-floating">
+      <label for="floatingTextarea">Descriptions</label>
+      <textarea name="description" id="" cols="30" rows="10" class="form-control">{{description}}</textarea>
+    </div>
+
+      <div class="form-floating mt-3">
+      <label for="floatingTextarea">extract</label>
+       <textarea name="extract" id="" cols="30" rows="10" class="form-control">{{extract}}</textarea>
+     </div>
+  </div>
+
+    <label for="formFile" class="form-label">Cover Image</label>
+  <input class="form-control" type="file" id="formFile">
  
-  <label> Description:
-    <textarea name="description" id="" cols="30" rows="10">{{description}}</textarea>
-  </label>
+  <button type="submit" class="btn btn-primary mt-3"> Edit </button>
 
-   <label> Extract:
-    <textarea name="extract" id="" cols="30" rows="10">{{extract}}</textarea>
-  </label>
-
-  <label for="">Edit image
-      <img src="{{image}}" alt="">
-      <input type="file" value="Changue Image" name="image">
-  </label>
- 
-
-  <button type="submit" class="btn btn-primary"> Edit</button>
 </form>

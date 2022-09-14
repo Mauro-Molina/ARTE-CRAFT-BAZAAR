@@ -8,6 +8,11 @@ const postSchema = new Schema(
       required: true,
       trim: true,
     },
+    author:{
+      type: String,
+      required: true,
+      trim: true,
+    },
     date:{
         type: Date,
      },

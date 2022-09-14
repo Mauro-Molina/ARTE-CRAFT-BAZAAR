@@ -2,6 +2,7 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const Post = require("../models/Posts.model");
 
+
 //post-list
 router.get("/post", (req, res) => {
     Post.find()
@@ -31,8 +32,6 @@ router.get("/:postId", (req, res) => {
     });
 })
 
-
-
 //edit post
 
 router.get("/:id/edit", (req, res)=>{
@@ -43,7 +42,7 @@ router.get("/:id/edit", (req, res)=>{
 })
 
 
-router.post("/:id/edit", (req,res)=>{
+router.post("/:id/edit",(req,res)=>{
   Post.findByIdAndUpdate(req.params.id, req.body,{new: true})
   .then((postUpdate)=>{
       res.redirect(`/post/${req.params.id}`)

@@ -8,16 +8,37 @@
   <p class="mt-4 text-muted"><i class="fa fa-envelope" aria-hidden="true"></i> GMail: <span style="color:rgba(0,0,0,0.8)">{{userInSession.email}}</span></p>
   <hr>
   <h4 class="text-muted mt-5"><i class="fa fa-folder" aria-hidden="true"></i> Posts:</h4>
-   <div class="card shadow" style="width: 18rem;">
-                  <div class="inner">
-                    <img src="b2.webp" class="card-img-top" alt="...">
-                  </div>  
-            <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <a href="#" class="btn text-center" style="background-color: #c6e2ed; color: #000;">Go somewhere</a>
-     </div>
-     </div>
+ <div class="generl-class">
+  <div class="container-sw">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-container mySwiper">
+        
+            <div class="swiper-wrapper">
+               {{#each post}}
+                <div class="swiper-slide">
+                    <img src="img/01.jpg"
+                        alt="">
+                    <div class="card-description">
+                        <div class="card-title">
+                            <h4>{{name}}</h4>
+                        </div>
+                        <div class="card-text">
+                            <p>{{extract}} </p>
+                        </div>
+                        <div class="card-link">
+                          <a href="/post/details">View More</a>
+                        </div>
+                    </div>
+
+                </div>
+                {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
      <hr>
      <h4 class="text-muted mt-5"><i class="fa fa-folder" aria-hidden="true"></i> Event:</h4>
    <div class="card shadow" style="width: 18rem;">
@@ -31,6 +52,7 @@
      </div>
      </div>
   </div>
+  
 {{/if}}
 
 
@@ -44,6 +66,10 @@
  <button class="btn btn-danger">Salir de session</button>
 </form>
 <a href="/" class="btn btn-primary">Home Page</a>
+<a href="/post/post" class="btn btn-primary mt-2">All Post</a>
+<a href="/post/create" class="btn btn-primary mt-2">Create Post</a>
+<a href="/event/create" class="btn btn-primary mt-2">Create Event</a>
+</div>
 </div>
 </div>
 </div>

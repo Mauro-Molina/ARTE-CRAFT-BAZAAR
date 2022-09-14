@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const Post = require("../models/Posts.model");
 
 router.get("/event", (req, res) => {
-    //if(req.session.post.type === "event"){
+  console.log(req.session.post)
+    //if(req.post.type === "event"){
         Post.find() 
         .then((event) => {
           res.render("event/event", {event: event});

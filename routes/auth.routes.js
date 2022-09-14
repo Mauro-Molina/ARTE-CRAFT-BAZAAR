@@ -9,6 +9,7 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Post = require("../models/Posts.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
@@ -21,10 +22,14 @@ router.get("/signup", isLoggedOut, (req, res) => {
 router.get("/user-profile",isLoggedIn,(req,res)=>{
   if(req.session.user.role ==="craftsman"){
     res.render("auth/user-profile", {userInSession: req.session.user})
+    
   }else{
     res.redirect("/")
   }
-
+  Post.find()
+  .then((post) => {
+    res.render("post/post", {post: post});
+  });
 
 })
 
