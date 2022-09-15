@@ -4,8 +4,15 @@
 {{#if userInSession}}
 <div class="col-md-10" style="border: 1px solid rgba(0,0,0,0.2);border-radius: 5px; padding: 20px">
   <h2>Welcome, {{ userInSession.username }}!</h2>
-  <img src="/images/logo-user.jpg" alt="" class="img-fluid" style="border-radius: 50%;" width="200px" height="200px">
+  
   <p class="mt-4 text-muted"><i class="fa fa-envelope" aria-hidden="true"></i> GMail: <span style="color:rgba(0,0,0,0.8)">{{userInSession.email}}</span></p>
+ 
+  <img src="{{userInSession.profilePic}}" >
+<form action="/auth/updatePhoto" method="post" enctype="multipart/form-data">
+  <input type="file" name="profilePic">
+  <button type="submit">Update</button>
+</form>
+
   <hr>
   <h4 class="text-muted mt-5"><i class="fa fa-folder" aria-hidden="true"></i> Posts:</h4>
    <div class="card shadow" style="width: 18rem;">

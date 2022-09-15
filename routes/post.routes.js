@@ -31,6 +31,25 @@ router.get("/:postId", (req, res) => {
     });
 })
 
+// routes/post.routes.js
+router.get('/post/:postId', (req, res, next) => {
+  const { postId } = req.params;
+
+  Post.findById(postId)
+    .populate('author comments') 
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'author',
+        model: 'User'
+      }
+    })
+    .then(foundPost => res.render('post/details', foundPost))
+    .catch(err => {
+      console.log(`Err while getting a single post from the  DB: ${err}`);
+      next(err);
+    });
+});
 
 
 //edit post

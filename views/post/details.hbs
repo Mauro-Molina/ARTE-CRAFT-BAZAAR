@@ -1,10 +1,46 @@
-<h2>Aqui van los detalles del libro</h2>
-
+<h2>Aqui van los detalles del post</h2>
+<div class="container">
 
 <h1>{{name}}</h1>
-<p>Author: {{craftsmanName}}</p>
+<p> Author{{user.username}}</p>
 <p class="text-muted">{{date}}</p>
 <p>{{description}}</p>
+
+{{!-- posts/details.hbs --}}
+
+<h2>{{title}}</h2>
+<div>
+  {{content}}
+  <br>
+  - by {{author.username}} 
+</div>
+
+{{#unless comments}}
+  <p>No comments yet!</p>
+{{/unless}}
+
+{{#each comments}}
+  <p><b>{{this.author.username}}:</b> {{this.content}}</p>
+{{/each}}
+
+<hr>
+
+<h3>Add comment</h3>
+
+<form action="/comments/post/{{_id}}/comment" method="post">
+  <label> Your username:
+    <input type="text" name="author" />
+  </label>
+
+  <input type="text" name="postAuthor" value="{{author.username}}" hidden />
+  <textarea name="content" cols="30" rows="2"></textarea>
+
+  <button type="submit">Comment</button>
+</form>
+
+<br>
+<a href="/users/{{author._id}}/posts">See all {{author.username}}'s posts </a>
+
 
 
 <a href="/post/post" class="btn btn-primary">View Post</a>
@@ -13,3 +49,5 @@
 <form action="/post/{{_id}}/delete" method="post">
 <button class="btn btn-danger">Delete</button>
 </form>
+
+</div>
