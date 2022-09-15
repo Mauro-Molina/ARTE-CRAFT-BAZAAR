@@ -1,16 +1,17 @@
+<body style="background: #C6E2EDff;"></body>
 <div class="container ">
   <div class="row">
     <div class="col-md-10">
       <h2 class="title" style="margin-top: -80px;">Edit Post</h2>
     </div>
     <div class="col-md-2">
-       <a href="/auth/user-profile" class="btn btn-danger" style="margin-top: -100px">Back Profile</a>
+       <a href="/auth/user-profile" class="btn btn-danger" style="margin-top: -100px;background-color: #dc5cb7; border: none"><i class="fa fa-backward" aria-hidden="true"></i> Back Profile</a>
     </div>
   </div>
   
  
 </div>
-<div class="container mb-5" style="margin-top: -10px;border: 1px solid rgba(0,0,0,0.2); text-transform:uppercase; border-radius: 10px; padding: 20px">
+<div class="container mb-5 shadow" style="margin-top: -10px;border: 1px solid rgba(0,0,0,0.2); text-transform:uppercase; border-radius: 10px; padding: 20px">
 <form action="/post/{{_id}}/edit" method="post">
   <div class="mb-3">
     <label> Name:
@@ -33,6 +34,7 @@
     <label for="formFile" class="form-label">Cover Image</label>
   <input class="form-control" type="file" id="formFile">
  
-  <button type="submit" class="btn btn-primary mt-3"> Edit </button>
+  <button type="submit" class="btn btn-primary mt-3" style="background-color: #FE8AB8ff;border: none"> Edit  <i class="fa fa-pencil" aria-hidden="true"></i></button>
 
 </form>
+</body>

@@ -2,15 +2,16 @@ const { Schema, model } = require("mongoose");
 
 
 const commentsSchema = new Schema({
-    message: {
+    content: {
       type: String,
        },
     date:{
       type: Date,
        },
-    user: {
+    author: {
       type: Schema.Types.ObjectId, ref:"User",
     },
+    
     
   },
   { 
@@ -20,4 +21,4 @@ const commentsSchema = new Schema({
 
 const Comments = model("Comments", commentsSchema);
 
-module.exports = Comemnts;
+module.exports = Comments;

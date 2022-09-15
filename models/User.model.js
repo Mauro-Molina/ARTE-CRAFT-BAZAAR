@@ -33,26 +33,9 @@ const userSchema = new Schema(
       post:[{
         type: Schema.Types.ObjectId, ref:"Post",
       }],
-      socialMedia:{
-        facebookProfile:{
-          type:String,
-          validate:{
-            validator:(text)=>{
-              return text.indexOf('https://www.facebook.com')=== 0;
-            },
-          message: "facebookProfile must start with 'https://www.facebook.com'"  
-          }
-        },
-        instagramProfile:{
-          type:String,
-          validate:{
-            validator:(text)=>{
-              return text.indexOf('https://www.instagram.com')=== 0;
-            },
-          message: "facebookProfile must start with 'https://www.instagram.com'"  
-          },
-        }
-      }
+      comments:[{
+        type: Schema.Types.ObjectId, ref:"Comments",
+      }],
     },
     {
       timestamps: true,

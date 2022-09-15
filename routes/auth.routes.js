@@ -22,7 +22,6 @@ router.get("/signup", isLoggedOut, (req, res) => {
 router.get("/user-profile",isLoggedIn,(req,res)=>{
   if(req.session.user.role ==="craftsman"){
     res.render("auth/user-profile", {userInSession: req.session.user})
-    
   }else{
     res.redirect("/")
   }
@@ -31,6 +30,26 @@ router.get("/user-profile",isLoggedIn,(req,res)=>{
     res.render("post/post", {post: post});
   });
 
+})
+
+//edit user
+
+router.get("/:id/editUser", (req, res)=>{
+
+  User.findById(req.params.id)
+  .then((user)=>{
+  
+      res.render("auth/edit", user)
+  })
+})
+
+
+router.post("/:id/editUser",(req,res)=>{
+  User.findByIdAndUpdate(req.params.id, req.body,{new: true})
+  .then((userUpdate)=>{
+      res.redirect(`/auth/${req.params.id}`)
+  })
+  .catch((err) => console.log(err))
 })
 
 
