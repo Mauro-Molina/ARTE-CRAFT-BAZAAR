@@ -21,7 +21,7 @@ require("./config")(app);
 const capitalized = require("./utils/capitalized");
 const projectName = "ARTE-CRAFT-BAZAAR";
 
-app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.appTitle = `${capitalized(projectName)}`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
@@ -30,13 +30,15 @@ app.use("/", index);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
+const postRoutes = require("./routes/post.routes");
+app.use("/post", postRoutes);
+
+const eventRoutes = require("./routes/event.routes");
+app.use("/event", eventRoutes);
+
 //User routing system
 const userRoutes = require("./routes/users.routes");
 app.use("/user", userRoutes);
-
-//craftsmen routing system
-const craftsmenRoutes = require("./routes/craftsmen.routes");
-app.use("/craftsman", craftsmenRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

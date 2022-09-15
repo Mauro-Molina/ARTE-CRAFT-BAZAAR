@@ -1,0 +1,20 @@
+<h1>Aqui van los post</h1>
+
+<div class="row">
+{{#each post}}
+<div class="col-md-4">
+     <div class="card shadow" style="width: 18rem;">
+        <div class="inner">
+            <img src="{{image}}" class="card-img-top" alt="...">
+        </div>
+                  
+        <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text">{{extract}}</p>
+            <a href="/post/{{_id}}" class="btn text-center" style="background-color: #c6e2ed; color: #000;">View More</a>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+</div>

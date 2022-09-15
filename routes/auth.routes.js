@@ -3,6 +3,7 @@ const router = require("express").Router();
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const axios = require("axios")
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
@@ -42,17 +43,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
 
-  /*//   ! This use case is using a regular expression to control for special characters and min length
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-
-  if (!regex.test(password)) {
-    return res.status(400).render("signup", {
-      errorMessage:
-        "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
-    });
-  }*/
-  
-
   // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
     // If the user is found, send the message username is taken
@@ -78,7 +68,35 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+
+        //send an e-mail
+        const data = {
+          service_id: 'service_l2rtkha',
+          template_id: 'template_u28ku0y',
+          user_id: 'FOeMhgtn8Azkby0KF',
+          template_params: {
+              username: user.username,
+              email: user.email,
+              //profilePic: user.profilePic,
+            },
+            accessToken: "w0pnJc24Q4bQA9Tf6Y_6_",
+          }
+          const url="https://api.emailjs.com/api/v1.0/email/send"
+          axios({
+          method:"post",
+          url,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify(data)
+        })
+        .then((result) => {
+          console.log(result)
+          console.log("Correo enviado ---------------------")})
+        .catch(err => console.log(err))
+
+
+      res.redirect("/");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
