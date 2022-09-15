@@ -4,7 +4,7 @@
         <div class="col-12 user-img text-center">
           <img src="/images/user.png" alt="">
         </div>
-        <form action="/auth/signup" method="POST">
+        <form action="/auth/signup" method="POST" enctype="multipart/form-data">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">User Name</label>
@@ -26,6 +26,7 @@
               <option selected>user</option>
               <option>craftsman</option>
             </select>
+            <input type="file" name="profilePic"/>
           </div>
         </div>
 

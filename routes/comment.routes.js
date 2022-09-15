@@ -11,7 +11,7 @@ router.post('/post/:postId/comment', (req, res, next) => {
    
     let user;
     console.log(req.session, content)
-    console.log("ruta comentario")
+   
     Comments.create({content: content, date: new Date(), author: req.session.user._id})
     .then((newComents)=>{
         Post.findByIdAndUpdate(postId, {$push:{comments: newComents._id}})

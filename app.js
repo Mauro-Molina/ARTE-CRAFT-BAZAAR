@@ -37,6 +37,7 @@ app.use("/post", postRoutes);
 const commentsRoutes = require("./routes/comment.routes");
 app.use("/comment", commentsRoutes);
 
+
 //User routing system
 const userRoutes = require("./routes/users.routes");
 app.use("/user", userRoutes);

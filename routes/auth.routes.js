@@ -14,21 +14,23 @@ const Post = require("../models/Posts.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const fileUploader = require("../config/cloudinary");
 
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+    res.render("auth/signup");
 });
 
 router.get("/user-profile",isLoggedIn,(req,res)=>{
   if(req.session.user.role ==="craftsman"){
-    res.render("auth/user-profile", {userInSession: req.session.user})
+   
+      Post.find({author:req.session.user._id})
+      .then((post) => {
+        res.render("auth/user-profile", {userInSession: req.session.user, posts: post})
+      });
   }else{
     res.redirect("/")
   }
-  Post.find()
-  .then((post) => {
-    res.render("post/post", {post: post});
-  });
+  
 
 })
 
@@ -52,8 +54,18 @@ router.post("/:id/editUser",(req,res)=>{
   .catch((err) => console.log(err))
 })
 
+router.post("/updatePhoto", fileUploader.single("profilePic"),(req,res) => {
+  const {_id} = req.session.user;
+  const {path} = req.file;
+  console.log(_id, path)
+  User.findByIdAndUpdate(_id, { profilePic : path } , {new:true})
+  .then((user) => {
+    req.session.user = user;
+    res.redirect("/auth/user-profile")
+  })
+})
 
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/signup", isLoggedOut,fileUploader.single("profilePic"), (req, res) => {
   const { username,email, password, role } = req.body;
 
   if (!username) {
@@ -67,6 +79,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
+
+
 
   //   ! This use case is using a regular expression to control for special characters and min length
   /*const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -99,6 +113,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
           email,
           password: hashedPassword,
           role,
+          profilePic:req?.file?.path
+          
+          
         });
       })
       .then((user) => {
@@ -107,6 +124,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         res.redirect("/");
       })
       .catch((error) => {
+        console.log(error)
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
