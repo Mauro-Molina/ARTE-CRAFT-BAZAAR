@@ -91,6 +91,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  
+}
+
+.body-user::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100vw;
+  
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 

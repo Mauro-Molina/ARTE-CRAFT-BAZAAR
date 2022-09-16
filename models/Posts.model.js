@@ -22,6 +22,8 @@ const postSchema = new Schema(
     },
     image: {
       type: String,
+      default:
+        "https://us.123rf.com/450wm/imagevectors/imagevectors1606/imagevectors160600380/59162629-icono-de-perfil-blanco-en-el-bot%C3%B3n-negro-aislado-en-blanco.jpg?ver=6",
     },
      description:{
       type: String,

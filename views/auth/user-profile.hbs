@@ -5,54 +5,35 @@
 
 {{#if userInSession}}
 <div class="col-md-10" style="border: 1px solid rgba(0,0,0,0.2);border-radius: 5px; padding: 20px">
-  <h2>Welcome, {{ userInSession.username }}!</h2>
-  
-  <p class="mt-4 text-muted"><i class="fa fa-envelope" aria-hidden="true"></i> GMail: <span style="color:rgba(0,0,0,0.8)">{{userInSession.email}}</span></p>
- 
-  <img src="{{userInSession.profilePic}}" >
+  <h2 class="text-white">Welcome, {{ userInSession.username }}!</h2>
+  <p class="mt-4 text-white"><i class="fa fa-envelope" aria-hidden="true"></i> GMail: <span style="color:rgba(255,255,255,0.8)">{{userInSession.email}}</span></p>
+  <img src="{{userInSession.profilePic}}" width="200px" height="200px" style="border-radius: 50%;">
+  <br><br>
 <form action="/auth/updatePhoto" method="post" enctype="multipart/form-data">
   <input type="file" name="profilePic">
-  <button type="submit">Update</button>
+  <button type="submit" class="btn " style="background-color: #fe8ab8; border: none">Update</button>
 </form>
 
   <hr>
-{{#each posts}}
-  {{name}}
-{{/each}}
-  <h4 class="text-muted mt-5"><i class="fa fa-folder" aria-hidden="true"></i> Posts:</h4>
-   <div class="card shadow" style="width: 18rem;">
-                  <div class="inner">
-                    <img src="b2.webp" class="card-img-top" alt="...">
-                  </div>  
-            <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <a href="#" class="btn text-center" style="background-color: #c6e2ed; color: #000;">Go somewhere</a>
-     </div>
-     </div>
-     <hr>
-     <h4 class="text-muted mt-5"><i class="fa fa-folder" aria-hidden="true"></i> Event:</h4>
-   <div class="card shadow" style="width: 18rem;">
-                  <div class="inner">
-                    <img src="b2.webp" class="card-img-top" alt="...">
-                  </div>  
-            <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <a href="#" class="btn text-center" style="background-color: #c6e2ed; color: #000;">Go somewhere</a>
-     </div>
-     </div>
+    {{#each posts}}
+
+    <div class="card shadow mb-3" style="width: 18rem;">
+ 
+  <div class="card-body ">
+    <h5 class="card-title">{{name}}</h5>
+    <p>{{author.username}}</p>
+    <p class="card-text">{{extract}}</p>
+    <a href="/post/{{_id}}" class="btn btn-primary" style="background-color: #dc5cb7; border: none">View More</a>
   </div>
+</div>
+     
+    {{/each}}
+ 
   </div>
+
   
 {{/if}}
 
-
-{{#else}}
-
- <br><p class="text-muted">Still no logged in user, sorry!</p>
-
- {{/else}}
 <div class="col-md-2">
 <form action="/auth/logout" method="get" class="mb-2">
  <button class="btn btn-danger" style="background-color: #dc5cb7; border: none">Salir de session <i class="fa fa-times" aria-hidden="true"></i></button>
@@ -60,8 +41,9 @@
 <a href="/" class="btn btn-primary" style="background-color: #a5b0cb; border: none">Home Page <i class="fa fa-home" aria-hidden="true"></i></a>
 <a href="/post/post" class="btn btn-primary mt-2" style="background-color: #fe8ab8; border: none">All Post <i class="fa fa-folder" aria-hidden="true"></i></a>
 <a href="/post/create" class="btn btn-primary mt-2" style="background-color: #fe8ab8; border: none">Create Post <i class="fa fa-folder-open" aria-hidden="true"></i></a>
-<a href="/event/create" class="btn btn-primary mt-2" style="background-color: #fe8ab8; border: none">Create Event <i class="fa fa-location-arrow" aria-hidden="true"></i></a>
+
 </div>
+  </div>
 </div>
 </div>
 </div>

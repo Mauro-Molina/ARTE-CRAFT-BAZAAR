@@ -18,7 +18,6 @@ router.get("/post", (req, res) => {
 
   //get-create
 router.get("/create", (req, res) => {
-
   res.render("post/form-create")
 })
 
@@ -78,6 +77,9 @@ router.post("/:id/edit",(req,res)=>{
   })
   .catch((err) => console.log(err))
 })
+
+
+
 
 
 //delete post

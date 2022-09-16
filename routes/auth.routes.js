@@ -3,6 +3,7 @@ const router = require("express").Router();
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const axios = require("axios")
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
@@ -30,12 +31,20 @@ router.get("/user-profile",isLoggedIn,(req,res)=>{
   }else{
     res.redirect("/")
   }
-  
+})
 
+router.post("/updatePhoto", fileUploader.single("profilePic"),(req,res) => {
+  const {_id} = req.session.user;
+  const {path} = req.file;
+  console.log(_id, path)
+  User.findByIdAndUpdate(_id, { profilePic : path } , {new:true})
+  .then((user) => {
+    req.session.user = user;
+    res.redirect("/auth/user-profile")
+  })
 })
 
 //edit user
-
 router.get("/:id/editUser", (req, res)=>{
 
   User.findById(req.params.id)
@@ -54,16 +63,6 @@ router.post("/:id/editUser",(req,res)=>{
   .catch((err) => console.log(err))
 })
 
-router.post("/updatePhoto", fileUploader.single("profilePic"),(req,res) => {
-  const {_id} = req.session.user;
-  const {path} = req.file;
-  console.log(_id, path)
-  User.findByIdAndUpdate(_id, { profilePic : path } , {new:true})
-  .then((user) => {
-    req.session.user = user;
-    res.redirect("/auth/user-profile")
-  })
-})
 
 router.post("/signup", isLoggedOut,fileUploader.single("profilePic"), (req, res) => {
   const { username,email, password, role } = req.body;
@@ -79,19 +78,6 @@ router.post("/signup", isLoggedOut,fileUploader.single("profilePic"), (req, res)
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-
-
-
-  //   ! This use case is using a regular expression to control for special characters and min length
-  /*const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-
-  if (!regex.test(password)) {
-    return res.status(400).render("signup", {
-      errorMessage:
-        "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
-    });
-  }*/
-  
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
@@ -114,14 +100,38 @@ router.post("/signup", isLoggedOut,fileUploader.single("profilePic"), (req, res)
           password: hashedPassword,
           role,
           profilePic:req?.file?.path
-          
-          
         });
       })
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+
+        //send an e-mail
+        const data = {
+          service_id: 'service_l2rtkha',
+          template_id: 'template_u28ku0y',
+          user_id: 'FOeMhgtn8Azkby0KF',
+          template_params: {
+              username: user.username,
+              email: user.email,
+              //profilePic: user.profilePic,
+            },
+            accessToken: "w0pnJc24Q4bQA9Tf6Y_6_",
+          }
+          const url="https://api.emailjs.com/api/v1.0/email/send"
+          axios({
+          method:"post",
+          url,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify(data)
+        })
+        .then()
+        .catch(err => console.log(err))
+
+
+      res.redirect("/");
       })
       .catch((error) => {
         console.log(error)
